@@ -1,0 +1,119 @@
+.popup {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    
+    .children {
+        position: absolute;
+        width: 95vw;
+        min-height: 80%;
+        background: #292967;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 4px 5px 3px black;
+
+        .close{
+            position: absolute;
+            right: 0;
+            top: -40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            background: #3aa9d4;
+            color: #ffffff;
+            transition: 0.3s;
+
+            &:hover{
+                color: #3aa9d4;
+                background: #ffffff;
+            }
+        }
+
+        form {
+            width: 90%;
+            display: grid;
+            font-size: 1.2rem;
+            grid-template-rows: 40px repeat(auto-fill, 20px);
+            grid-row-gap: 25px;
+            color: #f7f8ff;
+            h2{
+                justify-self: center;
+            }
+            label {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                font-weight: bold;
+                input {
+                    padding: 4px;
+                    border-radius: 5px;
+                }
+            }
+            button{
+                width: 50%;
+                justify-self: center;
+                height: 25px;
+                text-transform: uppercase;
+                background-color: #63ac36;
+                color: #f7f8ff;
+                font-weight: bold;
+                font-size: 1.2rem;
+                border-radius: 10px;
+                transition: 0.2s;
+                &:hover{
+                    background-color: #63ac36a1;
+                    box-shadow: 2px 2px 5px black;
+                }
+            }
+        }
+        
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .popup{
+
+        .children {
+            width: 1000px;
+        }
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .popup{
+
+        .children{
+
+            form{
+                grid-template-rows: 40px repeat(auto-fill, 50px);
+
+                label{
+                    grid-template-columns: 1fr;
+                    grid-template-rows: repeat(2, 20px);
+                    grid-row-gap: 5px;
+                    position: relative;
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        background: #3aa9d4;
+                        width: 2px;
+                        height: 100%;
+                        top: 0px;
+                        left: -5px;
+                    }
+                }
+            }
+        }
+    }
+}
