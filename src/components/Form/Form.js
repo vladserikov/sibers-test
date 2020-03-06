@@ -1,13 +1,13 @@
-import React from 'react'
-import './Form.scss'
+import React from 'react';
+import './Form.scss';
 
 const Form = ({ value, onChange}) => {
-    return (
-        <div className='form'>
-            <input type="text" value={value} placeholder='Search' onChange={onChange} />
+	return (
+		<div className='form'>
+			<input type="text" value={value} placeholder='Search' onChange={onChange} />
             
-        </div>
-    )
-}
+		</div>
+	);
+};
 
-export default Form
+export default Form;
