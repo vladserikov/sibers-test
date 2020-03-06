@@ -3,7 +3,7 @@ import './Popup.scss';
 
 const Popup = ({ data, onClose, onSubmit}) => {
 	const obj = {...data};
-	console.log(obj);
+	// console.log(obj);
     
 	return (
 		<div className='popup'>

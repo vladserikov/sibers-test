@@ -6,12 +6,12 @@ import Form from './components/Form/Form';
 import Popup from './components/Popup/Popup';
 
 const App = ({data}) => {
-	const [initialData, setInitialData] = useState(data);
-	const [search, setSearch] = useState('');
+	const [initialData, setInitialData] = useState(data); // сохранение данных в состояние
+	const [search, setSearch] = useState(''); 
 	const [openPop, setOpenPop] = useState(false);
 	const [dataPop, setDataPop] = useState(null);
 
-	const mainData = initialData.filter(user => user.name.includes(search));
+	const mainData = initialData.filter(user => user.name.includes(search)); // фильтр для поиска
 
 	useEffect(() => {
 		if (initialData.length === 0) {
@@ -23,9 +23,10 @@ const App = ({data}) => {
 					localStorage.setItem('data', JSON.stringify(resData));
 				});
 		}
-	}, [initialData]);
+	}, [initialData]); // если данных нет, то получем их с сервера
     
 	const handleData = (id) => () =>{
+		// открытие окна для изменения данных и передача их компоненту
 		setOpenPop(true);
 		setDataPop(mainData[id]);
 	};
@@ -34,11 +35,13 @@ const App = ({data}) => {
 		setSearch(e.target.value);
 	};
 
-	const handleUser= (obj) => (e) => {
+	const handleUser = (obj) => (e) => {
+		// обработка данных формы после отправки
 		e.preventDefault();
 		const target = e.target;
 		const newObj = {...obj};
-
+        
+		// незаполненны пропускаем
 		for (const key in obj) {
 			if (target[key]) {
 				if (target[key].value !== '') {
@@ -46,19 +49,23 @@ const App = ({data}) => {
 				}
 			}
 		}
-		console.log(newObj);
+		// console.log(newObj);
+		// заменяем старрые данные в массиве
 		const newData = initialData.map(data => data.id !== newObj.id ? data : newObj);
 		setInitialData(newData);
 		onClose();
-
+		// сохраняем новую копию в локальное хранилище
 		localStorage.setItem('data', JSON.stringify(newData));
 	};
 
-	const onClose = () => {
+	const onClose = () => { // закрытие окна
 		setOpenPop(false);
 	};
+    
 	let firstLetter;
-	const renderSubs = () => mainData.map((sub, index, arr) => {
+	// рендер всех пользователей
+	const renderSubs = () => mainData.map((sub, index) => {
+		// проверка нужно ли делать ограничение
 		const {name} = sub;
 		if ((index === 0) || (name[0] !== mainData[index - 1].name[0])) {
 			firstLetter = true;
